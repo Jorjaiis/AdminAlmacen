@@ -1,0 +1,170 @@
+﻿@model List<AdminAlmacen.ViewModels.ProviderViewModel>
+@{
+    ViewBag.Title = "Index_Provider";
+}
+@section css{
+    @Styles.Render("~/Content/Tablescss")
+}
+
+<!--<script>
+    $(document).ready(function () {
+        $('#TblInfo').DataTable();
+    });
+
+</script>-->
+
+<div>
+    @if (!String.IsNullOrEmpty(ViewBag.error))
+    {
+        <p class="alert alert-danger alert-danger"><b>@ViewBag.login_error</b></p>
+    }
+    <h2>Proveedores</h2>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">OK</h1>
+        <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" type="button" data-toggle="modal" data-target="#providerModal"><i class="fas fa-plus-circle fa-sm text-white-50"></i> Agregar Proveedor</button>
+    </div>
+    <!--<div class="card-body">
+        <div class="table-responsive">
+            <table id="TblInfo" class="table table-bordered table-striped display" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th hidden>Id</th>
+                        <th>Empresa</th>
+                        <th>Nombre del Contacto</th>
+                        <th>Telefono</th>
+                        <th>Location</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @foreach (var provider in Model)
+                        {
+                            <td hidden>@provider.id</td>
+                            <td>@provider.name</td>
+                            <td>@provider.contact_name</td>
+                            <td>@provider.contact_phone</td>
+                            <td>@provider.location</td>
+                            <td><a class="btn btn-primary" href="~/Provider/Editar/@provider.id">Editar</a></td>
+                            <td><a class="btn btn-danger" href="~/Provider/Editar/@provider.id">Eliminar</a></td>
+                        }
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>-->
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Proveedor</th>
+                            <th>Nombre Contacto</th>
+                            <th>Teléfono Contacto</th>
+                            <th>Ubicación</th>
+                            <th>Configurar</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Proveedor</th>
+                            <th>Nombre Contacto</th>
+                            <th>Teléfono Contacto</th>
+                            <th>Ubicación</th>
+                            <th>Configurar</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var provider in Model)
+                        {
+                            <tr>
+                                <td>@provider.name</td>
+                                <td>@provider.contact_name</td>
+                                <td>@provider.contact_phone</td>
+                                <td>@provider.location</td>
+                                <td>
+                                    <a class="btn btn-primary" href="~/Provider/Editar/@provider.id">Editar</a>
+                                    <a class="btn btn-danger" href="~/Provider/Editar/@provider.id">Eliminar</a>
+                                </td>
+                            </tr>
+                         }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!--Modal para dar de alta a un Proveedor-->
+<div class="modal fade" id="providerModal" tabindex="-1" role="dialog" aria-labelledby="providerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6>Nuevo Proveedor</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-building"></i> Nombre Proveedor</span>
+                        <div class="col">
+                            <input id="pName" name="name" type="text" placeholder="Nombre del Proveedor" class="form-control" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-mobile"></i> Telefono Proveedor</span>
+                        <div class="col">
+                            <input id="fname" name="name" type="tel" placeholder="Telefono Proveedor" class="form-control" autocomplete="off" min="10" max="13" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i> Nombre de Contacto</span>
+                        <div class="col">
+                            <input id="fname" name="name" type="text" placeholder="Nombre de Contacto" class="form-control" autocomplete="off" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-mobile"></i> Telefono Contacto</span>
+                        <div class="col">
+                            <input id="fname" name="name" type="tel" placeholder="Telefono de Contacto" class="form-control" autocomplete="off" min="10" max="13" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-map"></i> Ubicación</span>
+                        <div class="col">
+                            <input id="fname" name="name" type="text" placeholder="First Name" class="form-control" autocomplete="off" required>
+                        </div>
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input col-md-1 col-md-offset-2 text-center" id="checkAccept">
+                        <label class="form-check-label ml-3" for="checkAccept">Acepto agregar este nuevo usuario</label>
+                    </div>
+                    <br />
+                    <div class="form-group d-flex justify-content-end">
+                        <button type="button" class="btn btn-danger mr-2" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary mr-2" id="saveProvider">Guardar</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js{
+    @Scripts.Render("~/Content/Tablesjs")
+}

@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AlmacenDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="invoice">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="number" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="total" Type="int" Nullable="false" />
+    <Property Name="id_user" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="invoiceDetail">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_invoice" Type="int" Nullable="false" />
+    <Property Name="id_products" Type="int" Nullable="false" />
+    <Property Name="cost" Type="int" Nullable="false" />
+    <Property Name="quatity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="module">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="operation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="id_module" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="quantity_tot" Type="int" Nullable="false" />
+    <Property Name="quantity_min" Type="int" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="cost" Type="int" Nullable="false" />
+    <Property Name="id_provider" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="provider">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="contact_name" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="contact_phone" Type="int" Nullable="false" />
+    <Property Name="location" Type="int" Nullable="false" />
+    <Property Name="id_user" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="role">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="role_operation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_role" Type="int" Nullable="false" />
+    <Property Name="id_operation" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="store">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="location" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="first_name" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="last_name" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="id_role" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user_store">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_user" Type="int" Nullable="false" />
+    <Property Name="id_store" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_invoice_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="invoice">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_invoiceDetail_invoice">
+    <End Role="invoice" Type="Self.invoice" Multiplicity="1" />
+    <End Role="invoiceDetail" Type="Self.invoiceDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="invoice">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="invoiceDetail">
+        <PropertyRef Name="id_invoice" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_invoiceDetail_product">
+    <End Role="products" Type="Self.products" Multiplicity="1" />
+    <End Role="invoiceDetail" Type="Self.invoiceDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="invoiceDetail">
+        <PropertyRef Name="id_products" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_operation_module">
+    <End Role="module" Type="Self.module" Multiplicity="1" />
+    <End Role="operation" Type="Self.operation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="module">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="operation">
+        <PropertyRef Name="id_module" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_products_provider">
+    <End Role="provider" Type="Self.provider" Multiplicity="1" />
+    <End Role="products" Type="Self.products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="provider">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="products">
+        <PropertyRef Name="id_provider" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_provider_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="provider" Type="Self.provider" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="provider">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_roleOperation_operation">
+    <End Role="operation" Type="Self.operation" Multiplicity="1" />
+    <End Role="role_operation" Type="Self.role_operation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="operation">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="role_operation">
+        <PropertyRef Name="id_operation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_roleOperation_role">
+    <End Role="role" Type="Self.role" Multiplicity="1" />
+    <End Role="role_operation" Type="Self.role_operation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="role_operation">
+        <PropertyRef Name="id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_role">
+    <End Role="role" Type="Self.role" Multiplicity="1" />
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="role">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userStore_store">
+    <End Role="store" Type="Self.store" Multiplicity="1" />
+    <End Role="user_store" Type="Self.user_store" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="store">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="user_store">
+        <PropertyRef Name="id_store" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_userStore_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="user_store" Type="Self.user_store" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="user_store">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AlmacenDBModelStoreContainer">
+    <EntitySet Name="invoice" EntityType="Self.invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="invoiceDetail" EntityType="Self.invoiceDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="module" EntityType="Self.module" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="operation" EntityType="Self.operation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="provider" EntityType="Self.provider" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="role" EntityType="Self.role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="role_operation" EntityType="Self.role_operation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="store" EntityType="Self.store" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user_store" EntityType="Self.user_store" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_invoice_user" Association="Self.FK_invoice_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="invoice" EntitySet="invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_invoiceDetail_invoice" Association="Self.FK_invoiceDetail_invoice">
+      <End Role="invoice" EntitySet="invoice" />
+      <End Role="invoiceDetail" EntitySet="invoiceDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_invoiceDetail_product" Association="Self.FK_invoiceDetail_product">
+      <End Role="products" EntitySet="products" />
+      <End Role="invoiceDetail" EntitySet="invoiceDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_operation_module" Association="Self.FK_operation_module">
+      <End Role="module" EntitySet="module" />
+      <End Role="operation" EntitySet="operation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_products_provider" Association="Self.FK_products_provider">
+      <End Role="provider" EntitySet="provider" />
+      <End Role="products" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_provider_user" Association="Self.FK_provider_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="provider" EntitySet="provider" />
+    </AssociationSet>
+    <AssociationSet Name="FK_roleOperation_operation" Association="Self.FK_roleOperation_operation">
+      <End Role="operation" EntitySet="operation" />
+      <End Role="role_operation" EntitySet="role_operation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_roleOperation_role" Association="Self.FK_roleOperation_role">
+      <End Role="role" EntitySet="role" />
+      <End Role="role_operation" EntitySet="role_operation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_role" Association="Self.FK_user_role">
+      <End Role="role" EntitySet="role" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userStore_store" Association="Self.FK_userStore_store">
+      <End Role="store" EntitySet="store" />
+      <End Role="user_store" EntitySet="user_store" />
+    </AssociationSet>
+    <AssociationSet Name="FK_userStore_user" Association="Self.FK_userStore_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="user_store" EntitySet="user_store" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
