@@ -141,7 +141,7 @@
     <Compile Include="Models\invoice.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\invoiceDetail.cs">
+    <Compile Include="Models\invoice_detail.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model.Context.cs">
@@ -1791,6 +1791,7 @@
     <Content Include="Content\Images\bg2.jpg" />
     <Content Include="Content\Images\Logo.png" />
     <Content Include="Content\Images\user.png" />
+    <Content Include="Content\jscript\CreateProvider.js" />
     <Content Include="Content\js\chart-area-demo.js" />
     <Content Include="Content\js\chart-pie-demo.js" />
     <Content Include="Content\js\jquery.easing.min.js" />
@@ -3825,6 +3826,7 @@
     <Content Include="Views\Productos\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Provider\Index_Provider.cshtml" />
+    <Content Include="Views\Provider\CreateProvider.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

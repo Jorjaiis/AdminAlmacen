@@ -22,7 +22,7 @@ namespace AdminAlmacen.Models
     
         public int id { get; set; }
         public string name { get; set; }
-        public int location { get; set; }
+        public Nullable<int> id_location { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<user_store> user_store { get; set; }

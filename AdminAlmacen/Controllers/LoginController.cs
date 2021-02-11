@@ -48,20 +48,20 @@ namespace AdminAlmacen.Controllers
                     gd.name_user = oUser.first_name;
                     gd.id_store = oStore.First().id;
                     gd.name_store = oStore.First().name;
-                    FormsAuthentication.SetAuthCookie((oUser.id).ToString(), true);
+                    //FormsAuthentication.SetAuthCookie((oUser.id).ToString(), true);
                     Session["user"] = gd;
                 }
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {
-                ViewBag.login_error = ex.Message;
-                return View("Ocurrio un error");
+                ViewBag.login_error = "Ocurrio un error, intente de nuevo";
+                return View("Index");
             }
         }
         public ActionResult Logout()
         {
-            FormsAuthentication.SignOut();
+            //FormsAuthentication.SignOut();
             Session["user"] = null;
             return RedirectToAction("Index");
         }

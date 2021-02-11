@@ -26,7 +26,7 @@ namespace AdminAlmacen.Models
         }
     
         public virtual DbSet<invoice> invoice { get; set; }
-        public virtual DbSet<invoiceDetail> invoiceDetail { get; set; }
+        public virtual DbSet<invoice_detail> invoice_detail { get; set; }
         public virtual DbSet<module> module { get; set; }
         public virtual DbSet<operation> operation { get; set; }
         public virtual DbSet<products> products { get; set; }

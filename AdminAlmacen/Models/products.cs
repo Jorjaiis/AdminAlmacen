@@ -17,19 +17,19 @@ namespace AdminAlmacen.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public products()
         {
-            this.invoiceDetail = new HashSet<invoiceDetail>();
+            this.invoice_detail = new HashSet<invoice_detail>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
-        public int quantity_tot { get; set; }
+        public int quatity_tot { get; set; }
         public int quantity_min { get; set; }
         public int price { get; set; }
         public int cost { get; set; }
         public int id_provider { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<invoiceDetail> invoiceDetail { get; set; }
+        public virtual ICollection<invoice_detail> invoice_detail { get; set; }
         public virtual provider provider { get; set; }
     }
 }

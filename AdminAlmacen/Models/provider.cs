@@ -22,10 +22,10 @@ namespace AdminAlmacen.Models
     
         public int id { get; set; }
         public string name { get; set; }
-        public string contact_name { get; set; }
-        public int contact_phone { get; set; }
-        public int location { get; set; }
+        public string phone { get; set; }
         public int id_user { get; set; }
+        public Nullable<int> id_contact { get; set; }
+        public Nullable<int> id_location { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<products> products { get; set; }

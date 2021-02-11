@@ -12,13 +12,13 @@ namespace AdminAlmacen.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class invoiceDetail
+    public partial class invoice_detail
     {
         public int id { get; set; }
         public int id_invoice { get; set; }
-        public int id_products { get; set; }
+        public int id_product { get; set; }
         public int cost { get; set; }
-        public int quatity { get; set; }
+        public int quantity { get; set; }
     
         public virtual invoice invoice { get; set; }
         public virtual products products { get; set; }

@@ -11,14 +11,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="invoiceDetail">
-      <EntityTypeMapping TypeName="AlmacenDBModel.invoiceDetail">
-        <MappingFragment StoreEntitySet="invoiceDetail">
+    <EntitySetMapping Name="invoice_detail">
+      <EntityTypeMapping TypeName="AlmacenDBModel.invoice_detail">
+        <MappingFragment StoreEntitySet="invoice_detail">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="id_invoice" ColumnName="id_invoice" />
-          <ScalarProperty Name="id_products" ColumnName="id_products" />
+          <ScalarProperty Name="id_product" ColumnName="id_product" />
           <ScalarProperty Name="cost" ColumnName="cost" />
-          <ScalarProperty Name="quatity" ColumnName="quatity" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -44,7 +44,7 @@
         <MappingFragment StoreEntitySet="products">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="quantity_tot" ColumnName="quantity_tot" />
+          <ScalarProperty Name="quatity_tot" ColumnName="quatity_tot" />
           <ScalarProperty Name="quantity_min" ColumnName="quantity_min" />
           <ScalarProperty Name="price" ColumnName="price" />
           <ScalarProperty Name="cost" ColumnName="cost" />
@@ -57,10 +57,10 @@
         <MappingFragment StoreEntitySet="provider">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="contact_name" ColumnName="contact_name" />
-          <ScalarProperty Name="contact_phone" ColumnName="contact_phone" />
-          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
           <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="id_contact" ColumnName="id_contact" />
+          <ScalarProperty Name="id_location" ColumnName="id_location" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -86,7 +86,7 @@
         <MappingFragment StoreEntitySet="store">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="id_location" ColumnName="id_location" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

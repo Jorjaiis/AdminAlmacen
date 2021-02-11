@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "CreateProvider";
+}
+
+<h2>Proveedor</h2>
+<form>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <span class="col"><i class="fa fa-building"></i> Nombre de Prooveedor</span>
+                <div class="col">
+                    <input type="text" placeholder="Nombre" class="col form-control" autocomplete="off" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone"></i> Teléfono</span>
+                <div class="col">
+                    <input id="fname" name="name" type="tel" placeholder="Telefono" class="form-control" autocomplete="off" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="col"><i class="fa fa-map"></i> Ubicación</span>
+                <div class="col">
+                    <select name="p_location">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-group">
+                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-hashtag"></i> RFC</span>
+                <div class="col">
+                    <input id="p_rfc" type="text" placeholder="RFC" class="form-control" autocomplete="off" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="col"><i class="fa fa-map"></i> Dirección</span>
+                <div class="col">
+                    <input id="p_address" type="text" placeholder="Dirección" class="form-control" autocomplete="off" required />
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <hr />
+    <h2>Contacto</h2>
+    <div class="row">
+        
+        <div class="col">
+            <div class="form-group">
+                <span class="col"><i class="fa fa-building"></i> Nombre de Contacto</span>
+                <div class="col">
+                    <input type="text" placeholder="Nombre" class="col form-control" autocomplete="off" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone"></i> Teléfono de Contacto</span>
+                <div class="col">
+                    <input id="fname" name="name" type="tel" placeholder="Telefono" class="form-control" autocomplete="off" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="form-group">
+                <span class="col"><i class="fa fa-map"></i> Ubicación</span>
+                <div class="col">
+                    <select name="p_location">
+                        <option></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" style="padding: 10px ">
+        <input class="btn btn-success" type="submit" value="Agregar Proveedor" />
+    </div>
+
+</form>
+
+@section js{
+    @Scripts.Render("~/Content/jscript/CreateProvider")
+}

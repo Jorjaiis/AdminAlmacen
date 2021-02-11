@@ -16,6 +16,13 @@ namespace AdminAlmacen.Controllers
         {
             try
             {
+                if (Session["user"] == null)
+                {
+                    return View();
+                }
+                var user = (GlobalData)Session["user"];
+                ViewBag.name_user = user.name_user;
+                ViewBag.name_store = user.name_store;
                 List<ProviderViewModel> oProvider;
                 using (AlmacenDBEntities db = new AlmacenDBEntities())
                 {
@@ -23,19 +30,12 @@ namespace AdminAlmacen.Controllers
                     {
                         id = pro.id,
                         name = pro.name,
-                        contact_name = pro.contact_name,
-                        contact_phone = pro.contact_phone
+                        phone = pro.phone,
+                        contact_name = pro.id_contact
                     }).ToList();
 
                 }
-                if(Session["user"] != null)
-                {
-                    var user = (GlobalData)Session["user"];
-                    ViewBag.name_user = user.name_user;
-                    ViewBag.name_store = user.name_store;
-                }
-                
-                    return View(oProvider);
+                return View(oProvider);
             }
             catch (Exception ex)
             {
@@ -44,15 +44,17 @@ namespace AdminAlmacen.Controllers
             }
         }
 
-        // GET: Provider/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: Provider/Create
-        public ActionResult Create()
+        public ActionResult CreateProvider()
         {
+            if (Session["user"] == null)
+            {
+                return View();
+            }
+            var user = (GlobalData)Session["user"];
+            ViewBag.name_user = user.name_user;
+            ViewBag.name_store = user.name_store;
+
             return View();
         }
 
