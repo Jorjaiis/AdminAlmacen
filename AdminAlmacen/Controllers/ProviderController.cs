@@ -31,7 +31,8 @@ namespace AdminAlmacen.Controllers
                         id = pro.id,
                         name = pro.name,
                         phone = pro.phone,
-                        contact_name = pro.id_contact
+                        address = pro.address,
+                        rfc = pro.rfc
                     }).ToList();
 
                 }
@@ -39,21 +40,41 @@ namespace AdminAlmacen.Controllers
             }
             catch (Exception ex)
             {
+                List<ProviderViewModel> oProvider = new List<ProviderViewModel>();
                 ViewBag.error = "Ha ocurrido un Error: " + ex;
-                return View();
+                return View(oProvider);
             }
         }
 
         // GET: Provider/Create
         public ActionResult CreateProvider()
         {
-            if (Session["user"] == null)
+            try
+            {
+                if (Session["user"] == null)
+                {
+                    return View();
+                }
+                var user = (GlobalData)Session["user"];
+                ViewBag.name_user = user.name_user;
+                ViewBag.name_store = user.name_store;
+                List<CountryViewModel> countries;
+                using (AlmacenDBEntities db = new AlmacenDBEntities())
+                {
+                    countries = (from co in db.country select new CountryViewModel { 
+                        id = co.id,
+                        name = co.name
+                    }).ToList();
+                }
+                return View(countries);
+            }
+            catch (Exception ex)
             {
                 return View();
             }
-            var user = (GlobalData)Session["user"];
-            ViewBag.name_user = user.name_user;
-            ViewBag.name_store = user.name_store;
+            
+            
+
 
             return View();
         }

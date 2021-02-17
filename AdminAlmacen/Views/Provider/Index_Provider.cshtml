@@ -26,18 +26,18 @@
                     <thead>
                         <tr>
                             <th>Proveedor</th>
-                            <th>Nombre Contacto</th>
-                            <th>Teléfono Contacto</th>
-                            <th>Ubicación</th>
+                            <th>RFC</th>
+                            <th>Teléfono</th>
+                            <th>Dirección</th>
                             <th>Configurar</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Proveedor</th>
-                            <th>Nombre Contacto</th>
-                            <th>Teléfono Contacto</th>
-                            <th>Ubicación</th>
+                            <th>RFC</th>
+                            <th>Teléfono</th>
+                            <th>Dirección</th>
                             <th>Configurar</th>
                         </tr>
                     </tfoot>
@@ -46,9 +46,10 @@
                         {
                             <tr>
                                 <td>@provider.name</td>
+                                <td>@provider.rfc</td>
                                 <td>@provider.phone</td>
-                                <td>@provider.contact_name</td>
-                                <td>@provider.location</td>
+                                <td>@provider.address</td>
+                               
                                 <td>
                                     <a class="btn btn-primary" href="~/Provider/Editar/@provider.id">Editar</a>
                                     <a class="btn btn-danger" href="~/Provider/Editar/@provider.id">Eliminar</a>

@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace AdminAlmacen.Helper
+namespace AdminAlmacen.Security
 {
     public class Encrypt
     {
@@ -21,6 +21,6 @@ namespace AdminAlmacen.Helper
                 sb.AppendFormat("{0:x2}", stream[i]);
             return sb.ToString();
         }
-        
+
     }
 }

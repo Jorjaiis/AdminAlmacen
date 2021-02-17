@@ -4,19 +4,22 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="24dbcdb8c2824ae8ae18b0577cd4bc4d" Name="Diagram1">
-        <EntityTypeShape EntityType="AlmacenDBModel.invoice" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlmacenDBModel.invoice_detail" Width="1.5" PointX="9.75" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlmacenDBModel.module" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlmacenDBModel.operation" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlmacenDBModel.products" Width="1.5" PointX="7.5" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlmacenDBModel.provider" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlmacenDBModel.role" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlmacenDBModel.role_operation" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlmacenDBModel.store" Width="1.5" PointX="6" PointY="4.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlmacenDBModel.sysdiagrams" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlmacenDBModel.user" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AlmacenDBModel.user_store" Width="1.5" PointX="8.25" PointY="6.25" IsExpanded="true" />
+      <Diagram DiagramId="e9fa345c6085400692f2b21cf533f6d8" Name="Diagram1">
+        <EntityTypeShape EntityType="AlmacenDBModel.country" Width="1.5" PointX="8.25" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenDBModel.invoice" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenDBModel.invoice_detail" Width="1.5" PointX="9.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenDBModel.module" Width="1.5" PointX="1.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenDBModel.operation" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenDBModel.products" Width="1.5" PointX="7.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenDBModel.provider" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenDBModel.provider_country" Width="1.5" PointX="10.5" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenDBModel.role" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenDBModel.role_operation" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenDBModel.store" Width="1.5" PointX="6" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenDBModel.sysdiagrams" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenDBModel.user" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmacenDBModel.user_store" Width="1.5" PointX="8.25" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="AlmacenDBModel.FK_providerCountry_country" ManuallyRouted="false" />
         <AssociationConnector Association="AlmacenDBModel.FK_invoice_user" ManuallyRouted="false" />
         <AssociationConnector Association="AlmacenDBModel.FK_invoiceDetail_invoice" ManuallyRouted="false" />
         <AssociationConnector Association="AlmacenDBModel.FK_invoiceDetail_product" ManuallyRouted="false" />
@@ -24,6 +27,7 @@
         <AssociationConnector Association="AlmacenDBModel.FK_roleOperation_operation" ManuallyRouted="false" />
         <AssociationConnector Association="AlmacenDBModel.FK_products_provider" ManuallyRouted="false" />
         <AssociationConnector Association="AlmacenDBModel.FK_provider_user" ManuallyRouted="false" />
+        <AssociationConnector Association="AlmacenDBModel.FK_providerCountry_provider" ManuallyRouted="false" />
         <AssociationConnector Association="AlmacenDBModel.FK_roleOperation_role" ManuallyRouted="false" />
         <AssociationConnector Association="AlmacenDBModel.FK_user_role" ManuallyRouted="false" />
         <AssociationConnector Association="AlmacenDBModel.FK_userStore_store" ManuallyRouted="false" />

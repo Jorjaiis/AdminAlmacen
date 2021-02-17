@@ -80,7 +80,7 @@ namespace AdminAlmacen
             
             //Archivos JS y CSS utlilizados en la vista CreateProvider
             bundles.Add(new ScriptBundle("~/Content/jscript/CreateProvider")
-                .Include("~/Content/jscript/CreateProvider")
+                .Include("~/Content/jscript/CreateProvider.js")
                 );
 
 

@@ -25,12 +25,14 @@ namespace AdminAlmacen.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<country> country { get; set; }
         public virtual DbSet<invoice> invoice { get; set; }
         public virtual DbSet<invoice_detail> invoice_detail { get; set; }
         public virtual DbSet<module> module { get; set; }
         public virtual DbSet<operation> operation { get; set; }
         public virtual DbSet<products> products { get; set; }
         public virtual DbSet<provider> provider { get; set; }
+        public virtual DbSet<provider_country> provider_country { get; set; }
         public virtual DbSet<role> role { get; set; }
         public virtual DbSet<role_operation> role_operation { get; set; }
         public virtual DbSet<store> store { get; set; }

@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="AlmacenDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="invoice">
           <Key>
             <PropertyRef Name="id" />
@@ -58,9 +65,18 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="phone" Type="varchar" MaxLength="12" />
+          <Property Name="rfc" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="address" Type="nchar" MaxLength="10" />
           <Property Name="id_user" Type="int" Nullable="false" />
-          <Property Name="id_contact" Type="int" />
           <Property Name="id_location" Type="int" />
+        </EntityType>
+        <EntityType Name="provider_country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_country" Type="int" Nullable="false" />
+          <Property Name="id_provider" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="role">
           <Key>
@@ -186,6 +202,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_providerCountry_country">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="provider_country" Type="Self.provider_country" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="provider_country">
+              <PropertyRef Name="id_country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_providerCountry_provider">
+          <End Role="provider" Type="Self.provider" Multiplicity="1" />
+          <End Role="provider_country" Type="Self.provider_country" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="provider">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="provider_country">
+              <PropertyRef Name="id_provider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_roleOperation_operation">
           <End Role="operation" Type="Self.operation" Multiplicity="1" />
           <End Role="role_operation" Type="Self.role_operation" Multiplicity="*" />
@@ -247,12 +287,14 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="AlmacenDBModelStoreContainer">
+          <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="invoice" EntityType="Self.invoice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="invoice_detail" EntityType="Self.invoice_detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="module" EntityType="Self.module" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="operation" EntityType="Self.operation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="provider" EntityType="Self.provider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="provider_country" EntityType="Self.provider_country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="role" EntityType="Self.role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="role_operation" EntityType="Self.role_operation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="store" EntityType="Self.store" Schema="dbo" store:Type="Tables" />
@@ -283,6 +325,14 @@
             <End Role="user" EntitySet="user" />
             <End Role="provider" EntitySet="provider" />
           </AssociationSet>
+          <AssociationSet Name="FK_providerCountry_country" Association="Self.FK_providerCountry_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="provider_country" EntitySet="provider_country" />
+          </AssociationSet>
+          <AssociationSet Name="FK_providerCountry_provider" Association="Self.FK_providerCountry_provider">
+            <End Role="provider" EntitySet="provider" />
+            <End Role="provider_country" EntitySet="provider_country" />
+          </AssociationSet>
           <AssociationSet Name="FK_roleOperation_operation" Association="Self.FK_roleOperation_operation">
             <End Role="operation" EntitySet="operation" />
             <End Role="role_operation" EntitySet="role_operation" />
@@ -309,6 +359,14 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AlmacenDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="provider_country" Relationship="Self.FK_providerCountry_country" FromRole="country" ToRole="provider_country" />
+        </EntityType>
         <EntityType Name="invoice">
           <Key>
             <PropertyRef Name="id" />
@@ -371,11 +429,23 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="rfc" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="id_user" Type="Int32" Nullable="false" />
-          <Property Name="id_contact" Type="Int32" />
           <Property Name="id_location" Type="Int32" />
           <NavigationProperty Name="products" Relationship="Self.FK_products_provider" FromRole="provider" ToRole="products" />
           <NavigationProperty Name="user" Relationship="Self.FK_provider_user" FromRole="provider" ToRole="user" />
+          <NavigationProperty Name="provider_country" Relationship="Self.FK_providerCountry_provider" FromRole="provider" ToRole="provider_country" />
+        </EntityType>
+        <EntityType Name="provider_country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_country" Type="Int32" Nullable="false" />
+          <Property Name="id_provider" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="country" Relationship="Self.FK_providerCountry_country" FromRole="provider_country" ToRole="country" />
+          <NavigationProperty Name="provider" Relationship="Self.FK_providerCountry_provider" FromRole="provider_country" ToRole="provider" />
         </EntityType>
         <EntityType Name="role">
           <Key>
@@ -440,6 +510,18 @@
           <NavigationProperty Name="store" Relationship="Self.FK_userStore_store" FromRole="user_store" ToRole="store" />
           <NavigationProperty Name="user" Relationship="Self.FK_userStore_user" FromRole="user_store" ToRole="user" />
         </EntityType>
+        <Association Name="FK_providerCountry_country">
+          <End Role="country" Type="Self.country" Multiplicity="1" />
+          <End Role="provider_country" Type="Self.provider_country" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="country">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="provider_country">
+              <PropertyRef Name="id_country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_invoice_user">
           <End Role="user" Type="Self.user" Multiplicity="1" />
           <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
@@ -524,6 +606,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_providerCountry_provider">
+          <End Role="provider" Type="Self.provider" Multiplicity="1" />
+          <End Role="provider_country" Type="Self.provider_country" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="provider">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="provider_country">
+              <PropertyRef Name="id_provider" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_roleOperation_role">
           <End Role="role" Type="Self.role" Multiplicity="1" />
           <End Role="role_operation" Type="Self.role_operation" Multiplicity="*" />
@@ -573,18 +667,24 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="AlmacenDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="country" EntityType="Self.country" />
           <EntitySet Name="invoice" EntityType="Self.invoice" />
           <EntitySet Name="invoice_detail" EntityType="Self.invoice_detail" />
           <EntitySet Name="module" EntityType="Self.module" />
           <EntitySet Name="operation" EntityType="Self.operation" />
           <EntitySet Name="products" EntityType="Self.products" />
           <EntitySet Name="provider" EntityType="Self.provider" />
+          <EntitySet Name="provider_country" EntityType="Self.provider_country" />
           <EntitySet Name="role" EntityType="Self.role" />
           <EntitySet Name="role_operation" EntityType="Self.role_operation" />
           <EntitySet Name="store" EntityType="Self.store" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="user" EntityType="Self.user" />
           <EntitySet Name="user_store" EntityType="Self.user_store" />
+          <AssociationSet Name="FK_providerCountry_country" Association="Self.FK_providerCountry_country">
+            <End Role="country" EntitySet="country" />
+            <End Role="provider_country" EntitySet="provider_country" />
+          </AssociationSet>
           <AssociationSet Name="FK_invoice_user" Association="Self.FK_invoice_user">
             <End Role="user" EntitySet="user" />
             <End Role="invoice" EntitySet="invoice" />
@@ -613,6 +713,10 @@
             <End Role="user" EntitySet="user" />
             <End Role="provider" EntitySet="provider" />
           </AssociationSet>
+          <AssociationSet Name="FK_providerCountry_provider" Association="Self.FK_providerCountry_provider">
+            <End Role="provider" EntitySet="provider" />
+            <End Role="provider_country" EntitySet="provider_country" />
+          </AssociationSet>
           <AssociationSet Name="FK_roleOperation_role" Association="Self.FK_roleOperation_role">
             <End Role="role" EntitySet="role" />
             <End Role="role_operation" EntitySet="role_operation" />
@@ -636,6 +740,14 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="AlmacenDBModelStoreContainer" CdmEntityContainer="AlmacenDBEntities">
+          <EntitySetMapping Name="country">
+            <EntityTypeMapping TypeName="AlmacenDBModel.country">
+              <MappingFragment StoreEntitySet="country">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="invoice">
             <EntityTypeMapping TypeName="AlmacenDBModel.invoice">
               <MappingFragment StoreEntitySet="invoice">
@@ -693,9 +805,19 @@
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="id_user" ColumnName="id_user" />
-                <ScalarProperty Name="id_contact" ColumnName="id_contact" />
                 <ScalarProperty Name="id_location" ColumnName="id_location" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="provider_country">
+            <EntityTypeMapping TypeName="AlmacenDBModel.provider_country">
+              <MappingFragment StoreEntitySet="provider_country">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_country" ColumnName="id_country" />
+                <ScalarProperty Name="id_provider" ColumnName="id_provider" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

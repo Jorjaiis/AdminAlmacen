@@ -1,6 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="AlmacenDBModelStoreContainer" CdmEntityContainer="AlmacenDBEntities">
+    <EntitySetMapping Name="country">
+      <EntityTypeMapping TypeName="AlmacenDBModel.country">
+        <MappingFragment StoreEntitySet="country">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="invoice">
       <EntityTypeMapping TypeName="AlmacenDBModel.invoice">
         <MappingFragment StoreEntitySet="invoice">
@@ -58,9 +66,19 @@
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="rfc" ColumnName="rfc" />
+          <ScalarProperty Name="address" ColumnName="address" />
           <ScalarProperty Name="id_user" ColumnName="id_user" />
-          <ScalarProperty Name="id_contact" ColumnName="id_contact" />
           <ScalarProperty Name="id_location" ColumnName="id_location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="provider_country">
+      <EntityTypeMapping TypeName="AlmacenDBModel.provider_country">
+        <MappingFragment StoreEntitySet="provider_country">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_country" ColumnName="id_country" />
+          <ScalarProperty Name="id_provider" ColumnName="id_provider" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
