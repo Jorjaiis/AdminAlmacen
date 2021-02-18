@@ -1,4 +1,5 @@
-﻿using AdminAlmacen.Helper;
+﻿using AdminAlmacen.Filters;
+using AdminAlmacen.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,18 +9,11 @@ using System.Web.Mvc;
 namespace AdminAlmacen.Controllers
 {
     [Authorize]
-    public class HomeController : Controller
+    public class HomeController : MainController
     {
         
         public ActionResult Index()
         {
-            
-            if(Session["user"] != null)
-            {
-                var user = (GlobalData)Session["user"];
-                ViewBag.name_user = user.name_user;
-                ViewBag.name_store = user.name_store;
-            }
             return View();
         }
 

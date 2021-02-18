@@ -14,7 +14,7 @@ namespace AdminAlmacen.Security
         public string email { get; set; }
         public string password { get; set; }
         public IIdentity Identity { get; set; }
-        PersonalizedIdentity(IIdentity identity)
+        public PersonalizedIdentity(IIdentity identity)
         {
             this.Identity = identity;
             var user = Membership.GetUser(identity.Name) as UserMembership;

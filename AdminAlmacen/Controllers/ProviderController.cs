@@ -6,23 +6,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using AdminAlmacen.Filters;
 namespace AdminAlmacen.Controllers
 {
-    public class ProviderController : Controller
+    public class ProviderController : MainController
     {
         // GET: Provider
         public ActionResult Index_Provider()
         {
             try
             {
-                if (Session["user"] == null)
-                {
-                    return View();
-                }
-                var user = (GlobalData)Session["user"];
-                ViewBag.name_user = user.name_user;
-                ViewBag.name_store = user.name_store;
                 List<ProviderViewModel> oProvider;
                 using (AlmacenDBEntities db = new AlmacenDBEntities())
                 {
@@ -40,9 +33,10 @@ namespace AdminAlmacen.Controllers
             }
             catch (Exception ex)
             {
-                List<ProviderViewModel> oProvider = new List<ProviderViewModel>();
+                return View("Error", "Shared");
+                /*List<ProviderViewModel> oProvider = new List<ProviderViewModel>();
                 ViewBag.error = "Ha ocurrido un Error: " + ex;
-                return View(oProvider);
+                return View(oProvider);*/
             }
         }
 
@@ -51,13 +45,6 @@ namespace AdminAlmacen.Controllers
         {
             try
             {
-                if (Session["user"] == null)
-                {
-                    return View();
-                }
-                var user = (GlobalData)Session["user"];
-                ViewBag.name_user = user.name_user;
-                ViewBag.name_store = user.name_store;
                 List<CountryViewModel> countries;
                 using (AlmacenDBEntities db = new AlmacenDBEntities())
                 {
@@ -70,23 +57,27 @@ namespace AdminAlmacen.Controllers
             }
             catch (Exception ex)
             {
-                return View();
+                return View("Error","Shared");
             }
-            
-            
-
-
-            return View();
         }
 
         // POST: Provider/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult CreateProvider(ProviderViewModel model)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                using (AlmacenDBEntities db = new AlmacenDBEntities())
+                {
+                    provider oProvider = new provider();
+                    oProvider.name = model.name;
+                    oProvider.phone = model.phone;
+                    oProvider.rfc = model.rfc;
+                    oProvider.id_location = model.location;
+                    oProvider.address = model.address;
+                    db.provider.Add(oProvider);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             catch
