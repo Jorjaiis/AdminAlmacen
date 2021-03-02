@@ -18,6 +18,7 @@ namespace AdminAlmacen.Models
         public user()
         {
             this.invoice = new HashSet<invoice>();
+            this.provider = new HashSet<provider>();
             this.user_store = new HashSet<user_store>();
         }
     
@@ -27,10 +28,13 @@ namespace AdminAlmacen.Models
         public string email { get; set; }
         public string password { get; set; }
         public int id_role { get; set; }
+        public bool is_online { get; set; }
+        public int id_defaultStore { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<invoice> invoice { get; set; }
-        public virtual provider provider { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<provider> provider { get; set; }
         public virtual role role { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<user_store> user_store { get; set; }

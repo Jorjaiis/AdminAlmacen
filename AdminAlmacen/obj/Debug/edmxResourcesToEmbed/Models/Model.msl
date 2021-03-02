@@ -1,6 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="AlmacenDBModelStoreContainer" CdmEntityContainer="AlmacenDBEntities">
+    <EntitySetMapping Name="country">
+      <EntityTypeMapping TypeName="AlmacenDBModel.country">
+        <MappingFragment StoreEntitySet="country">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="invoice">
       <EntityTypeMapping TypeName="AlmacenDBModel.invoice">
         <MappingFragment StoreEntitySet="invoice">
@@ -11,14 +19,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="invoiceDetail">
-      <EntityTypeMapping TypeName="AlmacenDBModel.invoiceDetail">
-        <MappingFragment StoreEntitySet="invoiceDetail">
+    <EntitySetMapping Name="invoice_detail">
+      <EntityTypeMapping TypeName="AlmacenDBModel.invoice_detail">
+        <MappingFragment StoreEntitySet="invoice_detail">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="id_invoice" ColumnName="id_invoice" />
-          <ScalarProperty Name="id_products" ColumnName="id_products" />
+          <ScalarProperty Name="id_product" ColumnName="id_product" />
           <ScalarProperty Name="cost" ColumnName="cost" />
-          <ScalarProperty Name="quatity" ColumnName="quatity" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -44,7 +52,7 @@
         <MappingFragment StoreEntitySet="products">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="quantity_tot" ColumnName="quantity_tot" />
+          <ScalarProperty Name="quatity_tot" ColumnName="quatity_tot" />
           <ScalarProperty Name="quantity_min" ColumnName="quantity_min" />
           <ScalarProperty Name="price" ColumnName="price" />
           <ScalarProperty Name="cost" ColumnName="cost" />
@@ -57,10 +65,20 @@
         <MappingFragment StoreEntitySet="provider">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="contact_name" ColumnName="contact_name" />
-          <ScalarProperty Name="contact_phone" ColumnName="contact_phone" />
-          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="rfc" ColumnName="rfc" />
+          <ScalarProperty Name="address" ColumnName="address" />
           <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="id_location" ColumnName="id_location" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="provider_country">
+      <EntityTypeMapping TypeName="AlmacenDBModel.provider_country">
+        <MappingFragment StoreEntitySet="provider_country">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_country" ColumnName="id_country" />
+          <ScalarProperty Name="id_provider" ColumnName="id_provider" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -86,7 +104,7 @@
         <MappingFragment StoreEntitySet="store">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="id_location" ColumnName="id_location" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -110,6 +128,8 @@
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="id_role" ColumnName="id_role" />
+          <ScalarProperty Name="is_online" ColumnName="is_online" />
+          <ScalarProperty Name="id_defaultStore" ColumnName="id_defaultStore" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

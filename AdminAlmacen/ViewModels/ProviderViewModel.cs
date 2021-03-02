@@ -9,8 +9,10 @@ namespace AdminAlmacen.ViewModels
     {
         public int id { get; set; }
         public string name { get; set; }
-        public string contact_name { get; set; }
-        public int contact_phone { get; set; }
+        public string phone { get; set; }
+        public string rfc { get; set; }
+        public string address { get; set; }
         public int location { get; set; }
+
     }
 }

@@ -1,4 +1,4 @@
-﻿@model List<AdminAlmacen.ViewModels.ProviderViewModel>
+﻿@model IEnumerable<AdminAlmacen.ViewModels.ProviderViewModel>
 @{
     ViewBag.Title = "Index_Provider";
 }
@@ -6,58 +6,19 @@
     @Styles.Render("~/Content/Tablescss")
 }
 
-<!--<script>
-    $(document).ready(function () {
-        $('#TblInfo').DataTable();
-    });
-
-</script>-->
-
 <div>
     @if (!String.IsNullOrEmpty(ViewBag.error))
     {
         <p class="alert alert-danger alert-danger"><b>@ViewBag.login_error</b></p>
     }
-    <h2>Proveedores</h2>
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">OK</h1>
-        <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" type="button" data-toggle="modal" data-target="#providerModal"><i class="fas fa-plus-circle fa-sm text-white-50"></i> Agregar Proveedor</button>
+        <h2 class="mb-0 text-gray-800">Proveedores</h2>
+        <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="~/Provider/CreateProvider"><i class="fas fa-plus-circle fa-sm text-white-50"></i> Agregar Proveedor</a>
     </div>
-    <!--<div class="card-body">
-        <div class="table-responsive">
-            <table id="TblInfo" class="table table-bordered table-striped display" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th hidden>Id</th>
-                        <th>Empresa</th>
-                        <th>Nombre del Contacto</th>
-                        <th>Telefono</th>
-                        <th>Location</th>
-                        <th>Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        @foreach (var provider in Model)
-                        {
-                            <td hidden>@provider.id</td>
-                            <td>@provider.name</td>
-                            <td>@provider.contact_name</td>
-                            <td>@provider.contact_phone</td>
-                            <td>@provider.location</td>
-                            <td><a class="btn btn-primary" href="~/Provider/Editar/@provider.id">Editar</a></td>
-                            <td><a class="btn btn-danger" href="~/Provider/Editar/@provider.id">Eliminar</a></td>
-                        }
-
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>-->
-
+   
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Información de Proveedores</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -65,18 +26,18 @@
                     <thead>
                         <tr>
                             <th>Proveedor</th>
-                            <th>Nombre Contacto</th>
-                            <th>Teléfono Contacto</th>
-                            <th>Ubicación</th>
+                            <th>RFC</th>
+                            <th>Teléfono</th>
+                            <th>Dirección</th>
                             <th>Configurar</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
                             <th>Proveedor</th>
-                            <th>Nombre Contacto</th>
-                            <th>Teléfono Contacto</th>
-                            <th>Ubicación</th>
+                            <th>RFC</th>
+                            <th>Teléfono</th>
+                            <th>Dirección</th>
                             <th>Configurar</th>
                         </tr>
                     </tfoot>
@@ -85,16 +46,16 @@
                         {
                             <tr>
                                 <td>@provider.name</td>
-                                <td>@provider.contact_name</td>
-                                <td>@provider.contact_phone</td>
-                                <td>@provider.location</td>
+                                <td>@provider.rfc</td>
+                                <td>@provider.phone</td>
+                                <td>@provider.address</td>
+                               
                                 <td>
                                     <a class="btn btn-primary" href="~/Provider/Editar/@provider.id">Editar</a>
                                     <a class="btn btn-danger" href="~/Provider/Editar/@provider.id">Eliminar</a>
                                 </td>
                             </tr>
                          }
-
                     </tbody>
                 </table>
             </div>

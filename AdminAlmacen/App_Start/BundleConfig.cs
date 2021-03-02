@@ -35,7 +35,7 @@ namespace AdminAlmacen
                 .Include("~/Content/js/vendor/jquery/jquery.min.js")
                 .Include("~/Content/js/vendor/bootstrap/js/bootstrap.bundle.min.js")
                 .Include("~/Content/js/vendor/jquery-easing/jquery.easing.min.js")
-                //.Include("~/Content/dashboard.js")
+                .Include("~/Content/jscript/Layout.js")
                 );
             
             bundles.Add(new StyleBundle("~/Content/Layoutcss")
@@ -77,6 +77,11 @@ namespace AdminAlmacen
                .Include("~/Content/vendor/chart.js/Chart.min.js")
                .Include("~/Content/demo/chart-area-demo.js")
                .Include("~/Content/demo/chart-pie-demo.js"));
+            
+            //Archivos JS y CSS utlilizados en la vista CreateProvider
+            bundles.Add(new ScriptBundle("~/Content/jscript/CreateProvider")
+                .Include("~/Content/jscript/CreateProvider.js")
+                );
 
 
         }

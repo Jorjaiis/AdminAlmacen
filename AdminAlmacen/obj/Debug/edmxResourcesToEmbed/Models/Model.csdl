@@ -1,34 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="AlmacenDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="provider_country" Relationship="Self.FK_providerCountry_country" FromRole="country" ToRole="provider_country" />
+  </EntityType>
   <EntityType Name="invoice">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="number" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="number" Type="Int32" Nullable="false" />
     <Property Name="total" Type="Int32" Nullable="false" />
     <Property Name="id_user" Type="Int32" Nullable="false" />
     <NavigationProperty Name="user" Relationship="Self.FK_invoice_user" FromRole="invoice" ToRole="user" />
-    <NavigationProperty Name="invoiceDetail" Relationship="Self.FK_invoiceDetail_invoice" FromRole="invoice" ToRole="invoiceDetail" />
+    <NavigationProperty Name="invoice_detail" Relationship="Self.FK_invoiceDetail_invoice" FromRole="invoice" ToRole="invoice_detail" />
   </EntityType>
-  <EntityType Name="invoiceDetail">
+  <EntityType Name="invoice_detail">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_invoice" Type="Int32" Nullable="false" />
-    <Property Name="id_products" Type="Int32" Nullable="false" />
+    <Property Name="id_product" Type="Int32" Nullable="false" />
     <Property Name="cost" Type="Int32" Nullable="false" />
-    <Property Name="quatity" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="invoice" Relationship="Self.FK_invoiceDetail_invoice" FromRole="invoiceDetail" ToRole="invoice" />
-    <NavigationProperty Name="products" Relationship="Self.FK_invoiceDetail_product" FromRole="invoiceDetail" ToRole="products" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="invoice" Relationship="Self.FK_invoiceDetail_invoice" FromRole="invoice_detail" ToRole="invoice" />
+    <NavigationProperty Name="products" Relationship="Self.FK_invoiceDetail_product" FromRole="invoice_detail" ToRole="products" />
   </EntityType>
   <EntityType Name="module">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="operation" Relationship="Self.FK_operation_module" FromRole="module" ToRole="operation" />
   </EntityType>
   <EntityType Name="operation">
@@ -36,7 +44,7 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="id_module" Type="Int32" Nullable="false" />
     <NavigationProperty Name="module" Relationship="Self.FK_operation_module" FromRole="operation" ToRole="module" />
     <NavigationProperty Name="role_operation" Relationship="Self.FK_roleOperation_operation" FromRole="operation" ToRole="role_operation" />
@@ -47,12 +55,12 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="quantity_tot" Type="Int32" Nullable="false" />
+    <Property Name="quatity_tot" Type="Int32" Nullable="false" />
     <Property Name="quantity_min" Type="Int32" Nullable="false" />
     <Property Name="price" Type="Int32" Nullable="false" />
     <Property Name="cost" Type="Int32" Nullable="false" />
     <Property Name="id_provider" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="invoiceDetail" Relationship="Self.FK_invoiceDetail_product" FromRole="products" ToRole="invoiceDetail" />
+    <NavigationProperty Name="invoice_detail" Relationship="Self.FK_invoiceDetail_product" FromRole="products" ToRole="invoice_detail" />
     <NavigationProperty Name="provider" Relationship="Self.FK_products_provider" FromRole="products" ToRole="provider" />
   </EntityType>
   <EntityType Name="provider">
@@ -61,19 +69,31 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="contact_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="contact_phone" Type="Int32" Nullable="false" />
-    <Property Name="location" Type="Int32" Nullable="false" />
+    <Property Name="phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+    <Property Name="rfc" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="id_user" Type="Int32" Nullable="false" />
+    <Property Name="id_location" Type="Int32" />
     <NavigationProperty Name="products" Relationship="Self.FK_products_provider" FromRole="provider" ToRole="products" />
     <NavigationProperty Name="user" Relationship="Self.FK_provider_user" FromRole="provider" ToRole="user" />
+    <NavigationProperty Name="provider_country" Relationship="Self.FK_providerCountry_provider" FromRole="provider" ToRole="provider_country" />
+  </EntityType>
+  <EntityType Name="provider_country">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_country" Type="Int32" Nullable="false" />
+    <Property Name="id_provider" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="country" Relationship="Self.FK_providerCountry_country" FromRole="provider_country" ToRole="country" />
+    <NavigationProperty Name="provider" Relationship="Self.FK_providerCountry_provider" FromRole="provider_country" ToRole="provider" />
   </EntityType>
   <EntityType Name="role">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="role_operation" Relationship="Self.FK_roleOperation_role" FromRole="role" ToRole="role_operation" />
     <NavigationProperty Name="user" Relationship="Self.FK_user_role" FromRole="role" ToRole="user" />
   </EntityType>
@@ -93,7 +113,7 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="location" Type="Int32" Nullable="false" />
+    <Property Name="id_location" Type="Int32" />
     <NavigationProperty Name="user_store" Relationship="Self.FK_userStore_store" FromRole="store" ToRole="user_store" />
   </EntityType>
   <EntityType Name="sysdiagrams">
@@ -111,11 +131,13 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="first_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="last_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="email" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="id_role" Type="Int32" Nullable="false" />
+    <Property Name="is_online" Type="Boolean" Nullable="false" />
+    <Property Name="id_defaultStore" Type="Int32" Nullable="false" />
     <NavigationProperty Name="invoice" Relationship="Self.FK_invoice_user" FromRole="user" ToRole="invoice" />
     <NavigationProperty Name="provider" Relationship="Self.FK_provider_user" FromRole="user" ToRole="provider" />
     <NavigationProperty Name="role" Relationship="Self.FK_user_role" FromRole="user" ToRole="role" />
@@ -131,6 +153,18 @@
     <NavigationProperty Name="store" Relationship="Self.FK_userStore_store" FromRole="user_store" ToRole="store" />
     <NavigationProperty Name="user" Relationship="Self.FK_userStore_user" FromRole="user_store" ToRole="user" />
   </EntityType>
+  <Association Name="FK_providerCountry_country">
+    <End Role="country" Type="Self.country" Multiplicity="1" />
+    <End Role="provider_country" Type="Self.provider_country" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="country">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="provider_country">
+        <PropertyRef Name="id_country" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_invoice_user">
     <End Role="user" Type="Self.user" Multiplicity="1" />
     <End Role="invoice" Type="Self.invoice" Multiplicity="*" />
@@ -145,25 +179,25 @@
   </Association>
   <Association Name="FK_invoiceDetail_invoice">
     <End Role="invoice" Type="Self.invoice" Multiplicity="1" />
-    <End Role="invoiceDetail" Type="Self.invoiceDetail" Multiplicity="*" />
+    <End Role="invoice_detail" Type="Self.invoice_detail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="invoice">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="invoiceDetail">
+      <Dependent Role="invoice_detail">
         <PropertyRef Name="id_invoice" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_invoiceDetail_product">
     <End Role="products" Type="Self.products" Multiplicity="1" />
-    <End Role="invoiceDetail" Type="Self.invoiceDetail" Multiplicity="*" />
+    <End Role="invoice_detail" Type="Self.invoice_detail" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="products">
         <PropertyRef Name="id" />
       </Principal>
-      <Dependent Role="invoiceDetail">
-        <PropertyRef Name="id_products" />
+      <Dependent Role="invoice_detail">
+        <PropertyRef Name="id_product" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -205,13 +239,25 @@
   </Association>
   <Association Name="FK_provider_user">
     <End Role="user" Type="Self.user" Multiplicity="1" />
-    <End Role="provider" Type="Self.provider" Multiplicity="0..1" />
+    <End Role="provider" Type="Self.provider" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="user">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="provider">
+        <PropertyRef Name="id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_providerCountry_provider">
+    <End Role="provider" Type="Self.provider" Multiplicity="1" />
+    <End Role="provider_country" Type="Self.provider_country" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="provider">
         <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="provider_country">
+        <PropertyRef Name="id_provider" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -264,29 +310,35 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="AlmacenDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="country" EntityType="Self.country" />
     <EntitySet Name="invoice" EntityType="Self.invoice" />
-    <EntitySet Name="invoiceDetail" EntityType="Self.invoiceDetail" />
+    <EntitySet Name="invoice_detail" EntityType="Self.invoice_detail" />
     <EntitySet Name="module" EntityType="Self.module" />
     <EntitySet Name="operation" EntityType="Self.operation" />
     <EntitySet Name="products" EntityType="Self.products" />
     <EntitySet Name="provider" EntityType="Self.provider" />
+    <EntitySet Name="provider_country" EntityType="Self.provider_country" />
     <EntitySet Name="role" EntityType="Self.role" />
     <EntitySet Name="role_operation" EntityType="Self.role_operation" />
     <EntitySet Name="store" EntityType="Self.store" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="user" EntityType="Self.user" />
     <EntitySet Name="user_store" EntityType="Self.user_store" />
+    <AssociationSet Name="FK_providerCountry_country" Association="Self.FK_providerCountry_country">
+      <End Role="country" EntitySet="country" />
+      <End Role="provider_country" EntitySet="provider_country" />
+    </AssociationSet>
     <AssociationSet Name="FK_invoice_user" Association="Self.FK_invoice_user">
       <End Role="user" EntitySet="user" />
       <End Role="invoice" EntitySet="invoice" />
     </AssociationSet>
     <AssociationSet Name="FK_invoiceDetail_invoice" Association="Self.FK_invoiceDetail_invoice">
       <End Role="invoice" EntitySet="invoice" />
-      <End Role="invoiceDetail" EntitySet="invoiceDetail" />
+      <End Role="invoice_detail" EntitySet="invoice_detail" />
     </AssociationSet>
     <AssociationSet Name="FK_invoiceDetail_product" Association="Self.FK_invoiceDetail_product">
       <End Role="products" EntitySet="products" />
-      <End Role="invoiceDetail" EntitySet="invoiceDetail" />
+      <End Role="invoice_detail" EntitySet="invoice_detail" />
     </AssociationSet>
     <AssociationSet Name="FK_operation_module" Association="Self.FK_operation_module">
       <End Role="module" EntitySet="module" />
@@ -303,6 +355,10 @@
     <AssociationSet Name="FK_provider_user" Association="Self.FK_provider_user">
       <End Role="user" EntitySet="user" />
       <End Role="provider" EntitySet="provider" />
+    </AssociationSet>
+    <AssociationSet Name="FK_providerCountry_provider" Association="Self.FK_providerCountry_provider">
+      <End Role="provider" EntitySet="provider" />
+      <End Role="provider_country" EntitySet="provider_country" />
     </AssociationSet>
     <AssociationSet Name="FK_roleOperation_role" Association="Self.FK_roleOperation_role">
       <End Role="role" EntitySet="role" />

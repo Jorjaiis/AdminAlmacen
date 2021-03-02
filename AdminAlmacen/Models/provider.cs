@@ -18,17 +18,21 @@ namespace AdminAlmacen.Models
         public provider()
         {
             this.products = new HashSet<products>();
+            this.provider_country = new HashSet<provider_country>();
         }
     
         public int id { get; set; }
         public string name { get; set; }
-        public string contact_name { get; set; }
-        public int contact_phone { get; set; }
-        public int location { get; set; }
+        public string phone { get; set; }
+        public string rfc { get; set; }
+        public string address { get; set; }
         public int id_user { get; set; }
+        public Nullable<int> id_location { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<products> products { get; set; }
         public virtual user user { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<provider_country> provider_country { get; set; }
     }
 }

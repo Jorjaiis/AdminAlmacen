@@ -18,10 +18,4 @@ namespace AdminAlmacen.ViewModels
         public string password { get; set; }
 
     }
-
-    public class StoreViewModel
-    {
-        public int id;
-        public string name;
-    }
 }
