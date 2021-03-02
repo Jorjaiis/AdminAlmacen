@@ -121,6 +121,8 @@
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="id_role" Type="int" Nullable="false" />
+          <Property Name="is_online" Type="bit" Nullable="false" />
+          <Property Name="id_defaultStore" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="user_store">
           <Key>
@@ -495,6 +497,8 @@
           <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="id_role" Type="Int32" Nullable="false" />
+          <Property Name="is_online" Type="Boolean" Nullable="false" />
+          <Property Name="id_defaultStore" Type="Int32" Nullable="false" />
           <NavigationProperty Name="invoice" Relationship="Self.FK_invoice_user" FromRole="user" ToRole="invoice" />
           <NavigationProperty Name="provider" Relationship="Self.FK_provider_user" FromRole="user" ToRole="provider" />
           <NavigationProperty Name="role" Relationship="Self.FK_user_role" FromRole="user" ToRole="role" />
@@ -867,6 +871,8 @@
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="id_role" ColumnName="id_role" />
+                <ScalarProperty Name="is_online" ColumnName="is_online" />
+                <ScalarProperty Name="id_defaultStore" ColumnName="id_defaultStore" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

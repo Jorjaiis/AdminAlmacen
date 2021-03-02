@@ -136,6 +136,8 @@
     <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="id_role" Type="Int32" Nullable="false" />
+    <Property Name="is_online" Type="Boolean" Nullable="false" />
+    <Property Name="id_defaultStore" Type="Int32" Nullable="false" />
     <NavigationProperty Name="invoice" Relationship="Self.FK_invoice_user" FromRole="user" ToRole="invoice" />
     <NavigationProperty Name="provider" Relationship="Self.FK_provider_user" FromRole="user" ToRole="provider" />
     <NavigationProperty Name="role" Relationship="Self.FK_user_role" FromRole="user" ToRole="role" />

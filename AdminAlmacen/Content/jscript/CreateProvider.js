@@ -3,6 +3,7 @@
 }); 
 
 function faddContact() {
+    debugger;
     var chk = document.getElementById("chkContact");
     var prueba = $("#chkContact").is(":checked");
     if (chk.checked) {

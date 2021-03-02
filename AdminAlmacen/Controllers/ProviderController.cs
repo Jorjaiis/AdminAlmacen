@@ -34,9 +34,6 @@ namespace AdminAlmacen.Controllers
             catch (Exception ex)
             {
                 return View("Error", "Shared");
-                /*List<ProviderViewModel> oProvider = new List<ProviderViewModel>();
-                ViewBag.error = "Ha ocurrido un Error: " + ex;
-                return View(oProvider);*/
             }
         }
 

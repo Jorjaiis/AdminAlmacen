@@ -116,6 +116,8 @@
     <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="password" Type="varchar" MaxLength="250" Nullable="false" />
     <Property Name="id_role" Type="int" Nullable="false" />
+    <Property Name="is_online" Type="bit" Nullable="false" />
+    <Property Name="id_defaultStore" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="user_store">
     <Key>

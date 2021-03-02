@@ -16,11 +16,11 @@ namespace AdminAlmacen.Filters
             using (AlmacenDBEntities db = new AlmacenDBEntities())
             {
                 var oUser = (from us in db.user where us.id == current_user.id select us).FirstOrDefault();
-                List<store> oStore = (from st in db.store from us in db.user_store
-                                      where us.id_user == oUser.id && us.id_store == st.id select st).ToList();
+                var oStore = (from st in db.store where oUser.id_defaultStore == st.id select st).FirstOrDefault();
                 ViewBag.name_user = oUser.first_name;
-                ViewBag.name_store = oStore.First().name;
-                ViewBag.id_store = oStore.First().id;
+                ViewBag.id_user = oUser.id;
+                ViewBag.id_store = oStore.id;
+                ViewBag.name_store = oStore.name;
             }
         }
 

@@ -128,6 +128,8 @@
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="password" ColumnName="password" />
           <ScalarProperty Name="id_role" ColumnName="id_role" />
+          <ScalarProperty Name="is_online" ColumnName="is_online" />
+          <ScalarProperty Name="id_defaultStore" ColumnName="id_defaultStore" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

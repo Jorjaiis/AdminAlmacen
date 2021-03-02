@@ -35,7 +35,7 @@ namespace AdminAlmacen
                 .Include("~/Content/js/vendor/jquery/jquery.min.js")
                 .Include("~/Content/js/vendor/bootstrap/js/bootstrap.bundle.min.js")
                 .Include("~/Content/js/vendor/jquery-easing/jquery.easing.min.js")
-                //.Include("~/Content/dashboard.js")
+                .Include("~/Content/jscript/Layout.js")
                 );
             
             bundles.Add(new StyleBundle("~/Content/Layoutcss")

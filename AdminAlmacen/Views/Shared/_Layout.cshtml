@@ -21,7 +21,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="~/Home/Index">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -30,12 +30,17 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
+            <!--Id Store Hidden-->
+            <input type="text" id="id_user" value="@ViewBag.id_user" hidden>
+            <input type="text" id="id_store" value="@ViewBag.id_store" hidden>
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-building"></i>
-                    <span>@ViewBag.name_store</span>
+                <a class="nav-link d-flex justify-content-between align-items-center btn" id="changeStore">
+                    <span>
+                        <i class="fas fa-fw fa-building"></i>
+                        @ViewBag.name_store
+                    </span>
+                    <i class="fas fa-exchange-alt justify-content-end"></i>
                 </a>
             </li>
 
@@ -353,7 +358,6 @@
 
                 </nav>
                 <!-- End of Topbar -->
-                
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     @RenderBody()
@@ -384,6 +388,26 @@
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="~/Login/Logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change Store Modal-->
+    <div class="modal fade" id="storeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
