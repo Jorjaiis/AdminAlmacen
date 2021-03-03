@@ -11,7 +11,6 @@ namespace AdminAlmacen.Controllers
     [Authorize]
     public class HomeController : MainController
     {
-        
         public ActionResult Index()
         {
             return View();
