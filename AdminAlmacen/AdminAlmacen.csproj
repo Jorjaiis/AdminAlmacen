@@ -142,6 +142,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductosController.cs" />
     <Compile Include="Controllers\ProviderController.cs" />
@@ -3857,10 +3858,11 @@
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Provider\Index_Provider.cshtml" />
     <Content Include="Views\Provider\CreateProvider.cshtml" />
+    <Content Include="Views\Store\Index_Store.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Store\" />
+    <Folder Include="Views\Layout\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

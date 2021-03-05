@@ -124,6 +124,13 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="~/Store/Index_Store">
+                    <i class="fas fa-fw fa-building"></i>
+                    <span>Almacenes</span>
+                </a>
+            </li>
+
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
@@ -360,6 +367,11 @@
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+
+                    <div class="alert alert-danger" id="alert_errStore" style="display:none;">
+                        <button type="button" class="close" data-dismiss="alert">x</button>
+                        <strong>Error: </strong>Ocurrrio un error al Actualizar el Almacen. Intente en unos minutos.
+                    </div>
                     @RenderBody()
                 </div>
                 <!-- /.container-fluid -->
@@ -418,7 +430,6 @@
                     </button>
                 </div>
                 <div class="modal-body" id="storeModal_body">
-                    
                 </div>
                 <!--<div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>

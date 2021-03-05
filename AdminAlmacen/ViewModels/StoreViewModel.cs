@@ -7,8 +7,7 @@ namespace AdminAlmacen.ViewModels
 {
     public class StoreViewModel
     {
-        public int id;
-        public string name;
-        
+        public int id { get; set; }
+        public string name { get; set; }
     }
 }
