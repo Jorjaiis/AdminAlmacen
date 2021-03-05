@@ -5,9 +5,8 @@ using System.Web;
 
 namespace AdminAlmacen.ViewModels
 {
-    public class StoreViewModel
+    public class IdentificatorViewModel
     {
         public int id { get; set; }
-        public string name { get; set; }
     }
 }
