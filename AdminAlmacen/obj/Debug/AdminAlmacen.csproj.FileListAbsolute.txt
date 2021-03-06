@@ -400,7 +400,6 @@ C:\Users\Jorjaiis\Documents\GitHub\AdminAlmacen\AdminAlmacen\bin\es\System.Web.R
 C:\Users\Jorjaiis\Documents\GitHub\AdminAlmacen\AdminAlmacen\bin\es\System.Web.WebPages.resources.dll
 C:\Users\Jorjaiis\Documents\GitHub\AdminAlmacen\AdminAlmacen\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Jorjaiis\Documents\GitHub\AdminAlmacen\AdminAlmacen\bin\es\System.Web.WebPages.Razor.resources.dll
-C:\Users\Jorjaiis\Documents\GitHub\AdminAlmacen\AdminAlmacen\obj\Debug\AdminAlmacen.csprojAssemblyReference.cache
 C:\Users\Jorjaiis\Documents\GitHub\AdminAlmacen\AdminAlmacen\obj\Debug\AdminAlmacen.csproj.CoreCompileInputs.cache
 C:\Users\Jorjaiis\Documents\GitHub\AdminAlmacen\AdminAlmacen\obj\Debug\AdminAlmacen.csproj.CopyComplete
 C:\Users\Jorjaiis\Documents\GitHub\AdminAlmacen\AdminAlmacen\obj\Debug\AdminAlmacen.dll
@@ -414,3 +413,4 @@ C:\Users\Jorjaiis\Documents\GitHub\AdminAlmacen\AdminAlmacen\bin\System.Web.Http
 C:\Users\Jorjaiis\Documents\GitHub\AdminAlmacen\AdminAlmacen\bin\es\System.Net.Http.Formatting.resources.dll
 C:\Users\Jorjaiis\Documents\GitHub\AdminAlmacen\AdminAlmacen\bin\es\System.Web.Http.resources.dll
 C:\Users\Jorjaiis\Documents\GitHub\AdminAlmacen\AdminAlmacen\bin\es\System.Web.Http.WebHost.resources.dll
+C:\Users\Jorjaiis\Documents\GitHub\AdminAlmacen\AdminAlmacen\obj\Debug\AdminAlmacen.csprojAssemblyReference.cache

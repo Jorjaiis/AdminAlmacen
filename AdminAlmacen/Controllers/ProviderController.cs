@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using AdminAlmacen.Filters;
 namespace AdminAlmacen.Controllers
 {
+    [Authorize]
     public class ProviderController : MainController
     {
         // GET: Provider
@@ -33,7 +34,7 @@ namespace AdminAlmacen.Controllers
             }
             catch (Exception ex)
             {
-                return View("Error", "Shared");
+                return RedirectToAction("ErrorPage", "Error");
             }
         }
 

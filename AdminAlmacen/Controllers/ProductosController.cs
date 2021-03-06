@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace AdminAlmacen.Controllers
 {
+    [Authorize]
     public class ProductosController : Controller
     {
         // GET: Productos

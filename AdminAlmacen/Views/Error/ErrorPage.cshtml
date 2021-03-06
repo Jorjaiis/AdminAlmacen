@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/ErrorPagecss")
+</head>
+
+<body>
+    <div class="container">
+        <h2>Oops! Página no encontrada.</h2>
+        <h1>@ViewBag.Error</h1>
+        <h3>Hay un problema al cargar este contenido.</h3>
+        <h5>@ViewBag.Description</h5><br />
+        <!--Por favor intentalo de nuevo más tarde si el problema persiste...-->
+        <a class="btn btn-danger rounded-pill" href="~/Home/Index">Regresar a Home</a>
+    </div>
+    
+</body>
+@Scripts.Render("~/Content/ErrorPagejs")
+</html>
+
+
+
+

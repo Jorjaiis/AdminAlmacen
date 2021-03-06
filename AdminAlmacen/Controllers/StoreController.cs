@@ -9,6 +9,7 @@ using AdminAlmacen.Security;
 using AdminAlmacen.Filters;
 namespace AdminAlmacen.Controllers
 {
+    [Authorize]
     public class StoreController : MainController
     {
         // GET: Store

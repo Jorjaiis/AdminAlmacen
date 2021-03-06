@@ -46,6 +46,22 @@ namespace AdminAlmacen
                 //.Include("~/Content/dashboard.css")
                 );
 
+            //ErrorPage
+            bundles.Add(new StyleBundle("~/Content/ErrorPagecss")
+                .Include("~/Content/css/bootstrap.css")
+                .Include("~/Content/css/fontawesome/css/all.min.css")
+                .Include("~/Content/styles/ErrorPage.css"));
+
+            bundles.Add(new StyleBundle("~/Content/ErrorPagejs")
+                .Include("~/Scripts/jquery-{version}.js")
+                .Include("~/Scripts/bootstrap.js")
+                .Include("~/Content/js/vendor/jquery/jquery.min.js")
+                .Include("~/Content/js/vendor/bootstrap/js/bootstrap.bundle.min.js")
+                .Include("~/Content/js/vendor/jquery-easing/jquery.easing.min.js")
+                );
+
+
+            //Login JS y CSS
             bundles.Add(new StyleBundle("~/Content/Logincss")
                 .Include("~/Content/styles/login.css")
                 .Include("~/Content/css/bootstrap.css")
